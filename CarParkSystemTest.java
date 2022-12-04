@@ -1,4 +1,4 @@
-public class Test {
+public class CarParkSystemTest {
     public static void main(String[] args){
         CarParkSystem carpark = new CarParkSystem();
 
@@ -10,6 +10,9 @@ public class Test {
 
         System.out.println(carpark);
 
+        //Test change employee phone
         carpark.changeEmployeePhone("E01", "4");
+        System.out.println(carpark);
+
     }
 }

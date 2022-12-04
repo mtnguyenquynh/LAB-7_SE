@@ -1,35 +1,33 @@
 import java.util.*;
 
-public class Employee {
+public class Employee  {
     private String id;
     private String name;
     private String phone;
-    private Set<Permit> permitSet;
+    private HashSet<Permit> permits;
 
-
-    public Employee(String id, String name, String phone) { //constructor
+    public Employee(String id, String name, String phone) {
         this.id = id;
         this.name = name;
         this.phone = phone;
+        this.permits = new HashSet<Permit>();
+    }
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", permits=" + permits +
+                '}';
     }
 
-
-
-// getter and setter
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhone() {
@@ -39,12 +37,8 @@ public class Employee {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public Set<Permit> getPermitSet() {
-        return permitSet;
-    }
-
-    public void setPermitSet(Set<Permit> permitSet) {
-        this.permitSet = permitSet;
+    public Set<Permit> getPermits() {
+        return permits;
     }
 }
+
