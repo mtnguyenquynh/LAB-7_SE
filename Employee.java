@@ -40,5 +40,12 @@ public class Employee  {
     public Set<Permit> getPermits() {
         return permits;
     }
+
+    public void setPermits(HashSet<Permit> permits) {
+        this.permits = permits;
+    }
+    public void addPermit(Permit p){
+        permits.add(p);
+    }
 }
 

@@ -71,16 +71,16 @@ public class CarParkSystem {
     public void addPermit(String permitNr, String regNr, String area, String id){
 
         Employee owner = searchEmployee(id);
-        Permit p = null;
-        boolean precondition = (owner == null && !(owner.getPermits().size() <2));
+        Permit p;
+        boolean precondition = (owner != null && !(owner.getPermits().size() <2));
 
-        if(precondition)
-            if((searchPermit(permitNr)==null))
-                if((searchRegNumber(regNr)==null))
+        if(precondition){
+            if((searchPermit(permitNr)==null)){
+                if((searchRegNumber(regNr)==null)){
                     p = new Permit(permitNr, regNr, area, owner);
 
-       owner.getPermits().add(p);
-       permitList.add(p);
+        owner.addPermit(p);
+        permitList.add(p);}}}
     }
 
     //delete an employee
