@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class CarParkSystem {
-    private Set<Employee> employeeList;
-    private Set<Permit> permitList;
+    private final Set<Employee> employeeList;
+    private final Set<Permit> permitList;
 
     public CarParkSystem( )
     {
@@ -11,21 +11,6 @@ public class CarParkSystem {
         permitList = new HashSet<Permit>( );
 
     }
-    public Set<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(Set<Employee> employeeList) {
-        this.employeeList = employeeList;
-    }
-
-    public Set<Permit> getPermitList() {
-        return permitList;
-    }
-
-    public void setPermitList(Set<Permit> permitList) {
-        this.permitList = permitList;
-    }
 
     public Employee searchEmployee(String id)
     {
@@ -33,7 +18,7 @@ public class CarParkSystem {
         for (Employee e: employeeList){
             if((e.getId()).equals(id))
             {
-                employee = (Employee) e;
+                employee = e;
                 break;
             }
         }
@@ -53,7 +38,7 @@ public class CarParkSystem {
     public void changeEmployeePhone(String id, String phone){
         Employee e = searchEmployee(id);
         boolean precondition = (e == null);
-        if(precondition){
+        if(!precondition){
         e.setPhone(phone);
         }
     }
@@ -64,7 +49,7 @@ public class CarParkSystem {
         for (Permit p: permitList){
             if((p.getPermitNr()).equals(permitNr))
             {
-                permit = (Permit) p;
+                permit = p;
                 break;
             }
         }
@@ -76,7 +61,7 @@ public class CarParkSystem {
         for (Permit p: permitList){
             if((p.getRegNr()).equals(regNr))
             {
-                permit = (Permit) p;
+                permit = p;
                 break;
             }
         }
@@ -95,8 +80,7 @@ public class CarParkSystem {
                     p = new Permit(permitNr, regNr, area, owner);
 
        owner.getPermits().add(p);
-        //owner.permits.add(p);
-        permitList.add(p);
+       permitList.add(p);
     }
 
     //delete an employee
@@ -113,9 +97,9 @@ public class CarParkSystem {
         //check p in permitList
         Permit p = searchPermit(permitNr);
         boolean precondition = (p == null);
-        if(!precondition)
+        if(!precondition){
         p.getOwner().getPermits().remove(p);
-        permitList.remove(p);
+        permitList.remove(p);}
     }
 
     public void replacePermit(String oldPermitNr, String newPermitNr, String regNr, String area){
@@ -143,14 +127,23 @@ public class CarParkSystem {
         if(p != null){
             owner = p.getOwner();
         }
+        assert owner != null;
         return owner.getId() + owner.getName() + owner.getPhone();
     }
 
     //List all the permits details
-    public String getPermitDetail(){
-        List result = new ArrayList<>();
-
-        return ;
+    public List<Object> getPermitDetail(){
+        List<Object> result = new ArrayList<>();
+        if(permitList.size()>0){
+        for(Permit p : permitList) {
+            Employee e = p.getOwner();
+            result.add(p.getPermitNr());
+            result.add(e.getId());
+            result.add(e.getName());
+            result.add(e.getPhone());
+            result.add(p.getRegNr());
+        }}
+        return result;
     }
     @Override
     public String toString() {
